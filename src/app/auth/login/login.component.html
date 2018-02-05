@@ -24,8 +24,8 @@
       <mat-error>Field must not be empty.</mat-error>    
     </mat-form-field>
 
-    <button type="submit" mat-raised-button [disabled]="loginForm.invalid" color="primary">Submit</button>
-
+    <button *ngIf="!isLoading"type="submit" mat-raised-button [disabled]="loginForm.invalid" color="primary">Submit</button>
+    <mat-spinner *ngIf="isLoading"></mat-spinner>
   </form>
 </section>
   
