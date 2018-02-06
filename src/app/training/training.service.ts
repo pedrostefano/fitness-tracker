@@ -24,20 +24,25 @@ export class TrainingService {
             .collection('availableExercises')
             .snapshotChanges()
             .map(docArray => {
-            return docArray.map(doc => {
-                return {
-                id: doc.payload.doc.id,
-                name: doc.payload.doc.data().name,
-                duration: doc.payload.doc.data().duration,
-                calories: doc.payload.doc.data().calories
-                };
-            });
-        })
-        .subscribe((exercises: Exercise[]) => {
-            this.uiService.loadingStateChanged.next(false);
-            this.availableExercise = exercises;
-            this.exercisesChanged.next([...this.availableExercise]);
-        }));
+                return docArray.map(doc => {
+                    return {
+                        id: doc.payload.doc.id,
+                        name: doc.payload.doc.data().name,
+                        duration: doc.payload.doc.data().duration,
+                        calories: doc.payload.doc.data().calories
+                    };
+                });
+            })
+            .subscribe((exercises: Exercise[]) => {
+                    this.uiService.loadingStateChanged.next(false);
+                    this.availableExercise = exercises;
+                    this.exercisesChanged.next([...this.availableExercise]);
+                }, error => {
+                    this.uiService.loadingStateChanged.next(false);
+                    this.uiService.showSnackbar('Fetching exercices failed. Please try again.', null, 3000);
+                    this.exerciseChanged.next(null);
+                })
+            );
     }
 
     fetchCompletedOrCancelledExercises() {
