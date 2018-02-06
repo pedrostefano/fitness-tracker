@@ -85,8 +85,6 @@ export class TrainingService {
         return { ...this.runningExercise };
     }
 
-
-
     private addDataToDatabase(exercise: Exercise) {
         this.db.collection('finishedExercises').add(exercise);
     }
