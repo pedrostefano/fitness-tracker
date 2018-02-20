@@ -37,10 +37,6 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  // ngOnDestroy() {
-  //   this.loadingSubs.unsubscribe();
-  // }
-
   onSubmit(form: NgForm) {
     this.authService.login({
       email: this.loginForm.value.email,

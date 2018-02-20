@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { Subscription } from 'rxjs/Subscription';
 import { Observable } from 'rxjs/Observable';
 import { Store } from '@ngrx/store';
 
@@ -18,7 +17,6 @@ export class SignupComponent implements OnInit {
 
   maxDate;
   isLoading$: Observable<boolean>;
-  private loadingSubs: Subscription;
 
   constructor(
     private authService: AuthService,
